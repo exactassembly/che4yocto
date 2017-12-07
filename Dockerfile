@@ -1,16 +1,18 @@
 FROM eclipse/ubuntu_jre
 
+ARG DEBIAN_FRONTEND=noninteractive
+RUN echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+
 # Install Core packages
-RUN DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get update && \
+RUN sudo apt-get update && \
     sudo apt-get -y install \
-        netcat apt-utils sed rsync gawk wget curl unzip sudo cpio chrpath \
+        netcat apt-utils sed rsync gawk cpio chrpath \
         make build-essential gcc-multilib libtool autoconf automake \
         cvs subversion git-core quilt diffstat libssl-dev \
         vim srecord texinfo procps net-tools screen ncurses-dev \
-        nano smartpm rpm python-rpm vim srecord hexedit ssh-client libsdl-dev && \
-    sudo apt-get clean -y && \
-    sudo apt-get autoremove -y && \
+        nano smartpm rpm python-rpm vim srecord hexedit libsdl-dev && \
+    sudo apt-get -y clean && \
+    sudo apt-get -y autoremove -y && \
     sudo rm -rf /var/lib/apt/lists/*
 
 # Configure timezone and locale
