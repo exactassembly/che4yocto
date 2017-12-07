@@ -1,7 +1,8 @@
 FROM eclipse/ubuntu_jre
 
 # Install Core packages
-RUN sudo apt-get update && \
+RUN DEBIAN_FRONTEND=noninteractive && \
+    sudo apt-get update && \
     sudo apt-get -y install \
         netcat apt-utils sed rsync gawk wget curl unzip sudo cpio chrpath \
         make build-essential gcc-multilib libtool autoconf automake \
