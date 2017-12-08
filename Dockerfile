@@ -15,6 +15,12 @@ RUN sudo apt-get update && \
     sudo apt-get -y autoremove -y && \
     sudo rm -rf /var/lib/apt/lists/*
 
+RUN sudo curl -o /usr/local/bin/repo http://commondatastorage.googleapis.com/git-repo-downloads/repo && \
+	sudo chmod a+x /usr/local/bin/repo && \
+	sudo install -o user -g user -d /opt/yocto
+
+VOLUME /opt/yocto
+
 # Configure timezone and locale
 #RUN echo "UTC" > /etc/timezone && \
 #	dpkg-reconfigure -f noninteractive tzdata
