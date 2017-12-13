@@ -19,12 +19,6 @@ RUN sudo curl -o /usr/local/bin/repo http://commondatastorage.googleapis.com/git
 	sudo chmod a+x /usr/local/bin/repo && \
 	sudo install -o user -g user -d /opt/yocto
 
-VOLUME /opt/yocto
-
-# Configure timezone and locale
-#RUN echo "UTC" > /etc/timezone && \
-#	dpkg-reconfigure -f noninteractive tzdata
-
 WORKDIR /projects
 
 CMD tail -f /dev/null
